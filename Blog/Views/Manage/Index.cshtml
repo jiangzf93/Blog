@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Article>
+
+<h4 class="p-2 text-center">文章列表</h4>
+<table class="table table-sm table-bordered table-striped">
+    <thead>
+        <tr>
+            <th class="text-center">标题</th><th class="text-center">分类</th>
+            <th class="text-center">作者</th><th class="text-center">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(Article art in Model)
+        {
+        <tr>
+            <td>@art.Title</td>
+            <td>@art.Category</td>
+            <td>@art.Author.AuthorName</td>
+            <td class="text-center">
+                <a asp-action="Detail" asp-route-id="@art.ArticleId" class="btn btn-sm btn-info">查看</a>
+                <a asp-action="Edit" asp-route-id="@art.ArticleId" class="btn btn-sm btn-warning">编辑</a>
+                <a asp-action="Delete" asp-route-id="@art.ArticleId" class="btn btn-sm btn-danger">删除</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="Create" class="btn btn-primary">创建新文章</a>
+<a asp-action="AuthorCreate" class="btn btn-primary">添加作者</a>

@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>管理后台</title>
+    <link href="/lib/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="bg-dark text-white p-2 text-center">
+        <span class="navbar-brand ml-2">管理后台</span>
+    </div>
+    <div class="row m-1 p-1">
+        <div class="col-2">
+            <a class="btn btn-block" asp-action="Index" asp-controller="Manage">
+                文章列表
+            </a>
+            <a class="btn btn-block" asp-action="Author" asp-controller="Manage">
+                作者信息
+            </a>
+        </div>
+        <div>
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>

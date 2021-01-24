@@ -1,0 +1,36 @@
+﻿@model AuthorViewModel
+
+<h4 class="text-center p-2">查看作者</h4>
+
+<form asp-action="@Model.Action" method="post">
+    <div class="form-group">
+        <label asp-for="Author.AuthorId" hidden></label>
+        <input class="form-control" asp-for="Author.AuthorId" readonly hidden />
+    </div>
+    <div class="form-group">
+        <label asp-for="Author.AuthorName">作者姓名</label>
+        <input class="form-control" asp-for="Author.AuthorName" readonly="@Model.ReadOnly" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Author.Introduction">作者详情</label>
+        <textarea class="form-control" asp-for="Author.Introduction" readonly="@Model.ReadOnly"></textarea>
+    </div>
+    @if (Model.Author.IsHost)
+    {
+        <label asp-for="Author.Title">个人简介</label>
+        <input class="form-control" asp-for="Author.Title" readonly="@Model.ReadOnly" />
+    }
+    @if (Model.ShowAction)
+    {
+        <button class="btn" type="submit">提交</button>
+    }
+    else
+    {
+        <a asp-action="AuthorEdit" asp-route-id="@Model.Author.AuthorId" class="btn btn-sm btn-info">修改</a>
+    }
+    @if (Model.Action != "Create")
+    {
+        <a asp-action="AuthorDelete" asp-route-id="@Model.Author.AuthorId" class="btn btn-sm btn-info">删除</a>
+    }
+    <a class="btn btn-secondary" asp-action="Author">返回主页</a>
+</form>

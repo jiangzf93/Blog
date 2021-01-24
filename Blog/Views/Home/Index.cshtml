@@ -1,0 +1,57 @@
+﻿@model AuthorViewModel;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@Model.Author.Title</title>
+    <link href="/lib/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="bg-dark text-white p-2 text-center">
+        <span class="navbar-brand ml-2">@Model.Author.Title</span>
+    </div>
+    <div>
+
+
+        <div>
+            <h4>@Model.Author.AuthorName</h4>
+            <h5>@Model.Author.Introduction</h5>
+        </div>
+        <div>
+            <h5>代表作</h5>
+            <table class="table table-sm table-bordered table-striped">
+                @foreach (Article art in Model.Articles)
+                {
+                    if (art.Author.IsHost)
+                    {
+                        <tr>
+                            <td><a asp-action="Detail" asp-route-id="@art.ArticleId">@art.Title</a></td>
+                            <td>@art.Author.AuthorName</td>
+                            <td>@art.Category</td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+        <div>
+            <h4>作者推荐阅读</h4>
+            <table class="table table-sm table-bordered table-striped">
+                @foreach (Article art in Model.Articles)
+                {
+                    if (!art.Author.IsHost)
+                    {
+                        <tr>
+                            <td><a asp-action="Detail" asp-route-id="@art.ArticleId">@art.Title</a></td>
+                            <td>@art.Author.AuthorName</td>
+                            <td>@art.Category</td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+    </div>
+    <a asp-action="Index" asp-controller="Manage">作者登陆</a>
+</body>
+</html>
