@@ -14,7 +14,7 @@ namespace Blog.Models
         {
 
             context.Database.Migrate();
-            if (context.Authors.Count() == 0 && context.Articles.Count() == 0)
+            if (!context.Authors.Any())
             {
                 Author host = new Author { AuthorName = "海子", Introduction = "我是查海生", IsHost = true, Title = "海子的春暖花开" };
 
@@ -25,6 +25,5 @@ namespace Blog.Models
                 context.SaveChanges();
             }
         }
-
     }
 }

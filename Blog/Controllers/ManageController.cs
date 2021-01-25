@@ -106,7 +106,7 @@ namespace Blog.Controllers
             Author auth = await context.Authors.FirstOrDefaultAsync(auth => auth.AuthorId == id);
             if (!auth.IsHost)
             {
-                context.Authors.Remove(context.Authors.FirstOrDefault(auth => auth.AuthorId == id));
+                context.Authors.Remove(auth);
                 await context.SaveChangesAsync();
             }
             return RedirectToAction(nameof(Author));
